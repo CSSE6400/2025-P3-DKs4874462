@@ -32,6 +32,7 @@ def get_todos():
 
     todos = Todo.query.all()
     result = []
+
     for todo in todos:
 
         if completed is not None:
