@@ -17,6 +17,7 @@ services:
       - "6400:6400" 
     depends_on: 
       - database
+      
 volumes:
   postgres_data:
     name: todo_postgres_data
