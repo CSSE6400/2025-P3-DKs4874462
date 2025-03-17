@@ -1,8 +1,11 @@
-FROM python:latest
+FROM python:3.11-slim
 
 # Install pipx 
-RUN apt-get update && apt-get install -y pipx 
-RUN pipx ensurepath
+RUN apt-get update && apt-get install -y \
+    pipx \
+    libpq-dev \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install poetry 
 RUN pip3 install poetry
@@ -17,6 +20,8 @@ RUN pipx run poetry install --no-root
 # Copying our application into the container s
 COPY todo todo
 
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:6400/api/v1/health || exit 1
+
 # Running our application
-CMD ["bash", "-c", "sleep 10 && pipx run poetry run flask --app todo run \ 
-   --host 0.0.0.0 --port 6400"]
+CMD ["sh", "-c", "sleep 5 && pipx run poetry run flask --app todo run --host 0.0.0.0 --port 6400"]
