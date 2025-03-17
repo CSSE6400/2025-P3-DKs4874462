@@ -18,7 +18,7 @@ TEST_ITEM = {
 @api.route('/health') 
 def health():
     """Return a status of 'ok' if the server is running and listening to request"""
-    return jsonify({"status": "ok"}),200
+    return jsonify({"status": "ok"})
 
 
 @api.route('/todos', methods=['GET'])
