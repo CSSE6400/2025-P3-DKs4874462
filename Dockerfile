@@ -12,7 +12,7 @@ WORKDIR /app
 
 # Install poetry dependencies 
 COPY pyproject.toml ./ 
-RUN pipx run poetry install --no-root
+RUN poetry install --no-root
 
 # Copying our application into the container s
 COPY todo todo
