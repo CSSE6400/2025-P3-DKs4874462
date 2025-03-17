@@ -21,5 +21,5 @@ HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:6400/api/v1/health || exit 1
 
 # Running our application
-CMD ["bash", "-c", "sleep 10 && pipx run poetry run flask --app todo run \ 
+CMD ["bash", "-c", "sleep 5 && pipx run poetry run flask --app todo run \ 
    --host 0.0.0.0 --port 6400"]
